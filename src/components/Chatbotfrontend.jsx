@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaCommentDots, FaTimes, FaPaperPlane } from "react-icons/fa";
 const Chatbotfrontend = () => {
   const [messages, setMessages] = useState([]);
@@ -12,7 +12,7 @@ const Chatbotfrontend = () => {
     const userMessage = { text: input, sender: "user" };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     try {
-      const response = await fetch("http://localhost:8080/chat", {  
+      const response = await fetch("https://backend-gxry.onrender.com/chat", {  
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: "1234", message: input }),
