@@ -14,7 +14,7 @@ function App() {
     <>
       <Chatbotfrontend/>
       {/* Define your routes */}
-      <Router basename="/Frontend"> 
+      <Router basename="/"> 
         <Routes>
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<SignUp/>}/>
