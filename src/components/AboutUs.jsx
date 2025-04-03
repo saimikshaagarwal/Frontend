@@ -1,22 +1,12 @@
-import  { useState } from "react";
-import { X, Menu } from "lucide-react";
+import { useState } from "react";
 
 const AboutUs = () => {
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
-  };
-
   return (
     <div style={styles.body}>
-      {/* Center Top Widget & Button */}
+      {/* Center Top Widget */}
       <div style={styles.topCenterContainer}>
         <script src="https://static.elfsight.com/platform/platform.js" async></script>
         <div className="elfsight-app-a55d9b4c-4790-4775-9e0d-66d770209238" data-elfsight-app-lazy style={styles.languageButton}></div>
-        <button onClick={toggleNavbar} className="lg:hidden" style={styles.button}>
-          {mobileDrawerOpen ? <X /> : <Menu />}
-        </button>
       </div>
 
       <div style={styles.container}>
@@ -52,17 +42,20 @@ const styles = {
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     position: "relative",
+    padding: "0 10px", // Padding added for mobile responsiveness
+    boxSizing: "border-box",
   },
   container: {
-    width: "80%",
+    width: "100%",
     maxWidth: "900px",
     padding: "40px",
     background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+    margin: "10px 0", // Margin to prevent overflow
   },
   heading: {
-    fontSize: "2.5rem",
+    fontSize: "2rem", // Reduced font size for mobile
     marginBottom: "20px",
   },
   paragraph: {
@@ -79,19 +72,13 @@ const styles = {
     alignItems: "center",
     gap: "10px",
   },
-  button: {
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "1.5rem",
-  },
   languageButton: {
     width: "40px", 
     height: "40px", 
     display: "flex", 
     justifyContent: "center", 
     alignItems: "center"
-  }
+  },
 };
 
 export default AboutUs;

@@ -1,24 +1,10 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
 
 const ContactUs = () => {
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
-  };
-
   return (
     <div style={styles.body}>
       <div style={styles.container}>
-        <div style={styles.topRight}>
-          <script src="https://static.elfsight.com/platform/platform.js" async></script>
-          <div className="elfsight-app-a55d9b4c-4790-4775-9e0d-66d770209238 w-8 h-8" data-elfsight-app-lazy></div>
-          <button onClick={toggleNavbar} className="lg:hidden" style={styles.button}>
-            {mobileDrawerOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-        <h1>Contact Us</h1>
+        <h1 style={styles.heading}>Contact Us</h1>
         <p>We’d love to hear from you! Reach out to us through any of the following channels:</p>
 
         <div style={styles.contactInfo}>
@@ -59,23 +45,22 @@ const styles = {
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     color: "#ffffff",
+    padding: "0 10px", // To ensure some padding on mobile screens
+    boxSizing: "border-box",
   },
   container: {
-    width: "80%",
+    width: "100%",
     maxWidth: "900px",
     padding: "40px",
     background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
     position: "relative",
+    margin: "10px 0", // Margin to prevent overflow on smaller screens
   },
-  topRight: {
-    position: "absolute",
-    top: "10px",
-    right: "10px",
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
+  heading: {
+    fontSize: "2rem", // Reduced font size for mobile
+    marginBottom: "20px",
   },
   contactInfo: {
     marginTop: "20px",
@@ -86,12 +71,6 @@ const styles = {
     color: "#4AA3E6",
     fontWeight: "bold",
     marginLeft: "5px",
-  },
-  button: {
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    color: "#ffffff",
   },
 };
 
