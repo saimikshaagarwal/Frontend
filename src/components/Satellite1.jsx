@@ -121,13 +121,20 @@ const Satellite1 = () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <div id="map" style={{ width: "100%", height: "100vh" }}></div>
+      <div
+        id="map"
+        style={{
+          width: "100%",
+          height: "100vh",
+          opacity: 0.9, // Set opacity for transparency
+        }}
+      ></div>
       
       {/* Directions display */}
       <div 
-        style={{ 
+        style={{
           position: "absolute", 
-          bottom: "80px", 
+          bottom: "200px", // Adjusted to bring it above the buttons
           left: "50%", 
           transform: "translateX(-50%)", 
           backgroundColor: "black", 
@@ -144,7 +151,7 @@ const Satellite1 = () => {
 
       {/* Track Location and Update Fish Data Buttons */}
       <div 
-        style={{ 
+        style={{
           position: "absolute", 
           bottom: "120px", 
           left: "50%", 
@@ -156,7 +163,7 @@ const Satellite1 = () => {
       >
         <button 
           onClick={trackLocation} 
-          style={{ 
+          style={{
             padding: "10px", 
             backgroundColor: "blue", 
             color: "white", 
@@ -169,7 +176,7 @@ const Satellite1 = () => {
         </button>
         <button 
           onClick={updateFishData} 
-          style={{ 
+          style={{
             padding: "10px", 
             backgroundColor: "orange", 
             color: "white", 
@@ -179,6 +186,22 @@ const Satellite1 = () => {
           }}
         >
           Find Fish
+        </button>
+
+        {/* Home Button aligned with Find Fish button */}
+        <button
+          onClick={() => mapRef.current.setView([20.5937, 78.9629], 5)}
+          style={{
+            padding: "10px", 
+            backgroundColor: "green", 
+            color: "white", 
+            border: "none", 
+            borderRadius: "5px", 
+            cursor: "pointer", 
+            marginLeft: "10px"  // Adds space to the right of the Find Fish button
+          }}
+        >
+          Home
         </button>
       </div>
     </div>
