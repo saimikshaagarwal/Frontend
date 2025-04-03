@@ -1,6 +1,6 @@
 export const navItems = [
-    {label: "About", href: "src/components/AboutUs.html"},
-    {label: "Live! Fish Detection System", href: "src/components/Satellite1.html"},
-    {label: "Contact Us", href: "src/components/ContactUs.html"},
+    {label: "About", href: "/aboutus"},
+    {label: "Live! Fish Detection System", href: "/satellite1"},
+    {label: "Contact Us", href: "/contactus"},
 ];
    
