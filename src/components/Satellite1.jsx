@@ -1,20 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
-import "leaflet-routing-machine";
 import "leaflet/dist/leaflet.css";
-import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 const Satellite1 = () => {
   const mapRef = useRef(null);
   const userMarkerRef = useRef(null);
   const [userLocation, setUserLocation] = useState(null);
   const [fishMarkers, setFishMarkers] = useState([]);
-  const routingControlRef = useRef(null);
+  const [routePolyline, setRoutePolyline] = useState(null);
   const [currentStep, setCurrentStep] = useState("Click a fish location to navigate");
-
+  const [routeSteps, setRouteSteps] = useState([]);
+  
   useEffect(() => {
     if (!mapRef.current) {
-      console.log("Initializing Map...");
       const map = L.map("map", { zoomControl: false }).setView([20.5937, 78.9629], 5);
       L.control.zoom({ position: "bottomright" }).addTo(map);
       
@@ -26,6 +24,48 @@ const Satellite1 = () => {
       mapRef.current = map;
     }
   }, []);
+
+  const haversineDistance = (lat1, lon1, lat2, lon2) => {
+    const toRad = (angle) => (angle * Math.PI) / 180;
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    
+    return R * c;
+  };
+
+  const getDirection = (lat1, lon1, lat2, lon2) => {
+    const dLat = lat2 - lat1;
+    const dLon = lon2 - lon1;
+    let direction = "";
+    
+    if (Math.abs(dLat) > Math.abs(dLon)) {
+      direction = dLat > 0 ? "Head North" : "Head South";
+    } else {
+      direction = dLon > 0 ? "Head East" : "Head West";
+    }
+    return direction;
+  };
+
+  const updateNavigationStep = (lat, lon) => {
+    if (routeSteps.length === 0) return;
+    
+    const [nextStep, ...remainingSteps] = routeSteps;
+    const distanceToNext = haversineDistance(lat, lon, nextStep.lat, nextStep.lon);
+    
+    if (distanceToNext < 0.05) {
+      setRouteSteps(remainingSteps);
+      setCurrentStep(nextStep.instruction);
+    } else {
+      setCurrentStep(getDirection(lat, lon, nextStep.lat, nextStep.lon));
+    }
+  };
 
   const trackLocation = () => {
     if (!navigator.geolocation) {
@@ -54,6 +94,7 @@ const Satellite1 = () => {
         }
 
         mapRef.current.setView([latitude, longitude], 10);
+        updateNavigationStep(latitude, longitude);
       },
       (error) => alert("Geolocation error: " + error.message),
       { enableHighAccuracy: true }
@@ -63,7 +104,7 @@ const Satellite1 = () => {
   const updateFishData = () => {
     if (!userLocation || !mapRef.current) return;
     fishMarkers.forEach((marker) => mapRef.current.removeLayer(marker));
-
+    
     const fishIcon = L.icon({ iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png", iconSize: [20, 20] });
     
     const newFishMarkers = [
@@ -83,42 +124,26 @@ const Satellite1 = () => {
   const navigateToFish = (fishLat, fishLon) => {
     if (!userLocation || !mapRef.current) return;
     
-    if (routingControlRef.current) {
-      mapRef.current.removeControl(routingControlRef.current);
+    if (routePolyline) {
+      mapRef.current.removeLayer(routePolyline);
     }
     
-    const routingControl = L.Routing.control({
-      waypoints: [L.latLng(userLocation.latitude, userLocation.longitude), L.latLng(fishLat, fishLon)],
-      router: L.Routing.osrmv1({ serviceUrl: "https://router.project-osrm.org/route/v1" }),
-      routeWhileDragging: true,
-      createMarker: () => null,
-      lineOptions: { addWaypoints: false },
-      show: false,
-    }).addTo(mapRef.current);
+    const route = [[userLocation.latitude, userLocation.longitude], [fishLat, fishLon]];
+    const polyline = L.polyline(route, { color: "blue", weight: 4 }).addTo(mapRef.current);
+    setRoutePolyline(polyline);
     
-    routingControl.on("routesfound", (e) => {
-      const steps = e.routes[0].instructions.map((instr) => instr.text);
-      setCurrentStep(steps[0] || "Follow the route");
-    });
-
-    routingControl.on("routingerror", (error) => {
-      console.error("Routing error:", error);
-      setCurrentStep("Routing failed! Check your internet connection.");
-    });
-    
-    routingControlRef.current = routingControl;
+    setRouteSteps([{ lat: fishLat, lon: fishLon, instruction: "You have reached your destination." }]);
+    setCurrentStep(getDirection(userLocation.latitude, userLocation.longitude, fishLat, fishLon));
   };
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <div id="map" style={{ width: "100%", height: "80vh", filter: "opacity(0.9)" }}></div>
-      <div style={{ textAlign: "center", marginTop: "10px", fontWeight: "bold", color: "#333", position: "absolute", bottom: "60px", left: "50%", transform: "translateX(-50%)", backgroundColor: "white", padding: "10px", borderRadius: "8px", boxShadow: "0px 2px 10px rgba(0,0,0,0.2)" }}>
-        {currentStep}
-      </div>
-      <div style={{ position: "absolute", bottom: "20px", left: "20px", zIndex: "1000", display: "flex", gap: "10px" }}>
-        <button onClick={trackLocation} style={{ padding: "10px", backgroundColor: "blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Track Location</button>
-        <button onClick={updateFishData} style={{ padding: "10px", backgroundColor: "orange", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Find Fish</button>
-        <button onClick={() => window.location.href = "/"} style={{ padding: "10px", backgroundColor: "green", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Home</button>
+      <div id="map" style={{ width: "100%", height: "80vh" }}></div>
+      <div style={{ textAlign: "center", marginTop: "10px", fontWeight: "bold", color: "#333" }}>{currentStep}</div>
+      <div style={{ position: "absolute", bottom: "20px", left: "20px", display: "flex", gap: "10px" }}>
+        <button style={{ padding: "10px 20px", background: "blue", color: "white", borderRadius: "10px" }} onClick={trackLocation}>Track</button>
+        <button style={{ padding: "10px 20px", background: "green", color: "white", borderRadius: "10px" }} onClick={updateFishData}>Find Fish</button>
+        <button style={{ padding: "10px 20px", background: "red", color: "white", borderRadius: "10px" }} onClick={() => setRoutePolyline(null)}>Home</button>
       </div>
     </div>
   );
