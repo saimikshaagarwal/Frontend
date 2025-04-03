@@ -10,19 +10,29 @@ const Satellite1 = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [fishMarkers, setFishMarkers] = useState([]);
   const routingControlRef = useRef(null);
-  const [currentStep, setCurrentStep] = useState("Click a fish location to navigate");
+  const [currentStep, setCurrentStep] = useState("Directions!!");
 
   useEffect(() => {
     if (!mapRef.current) {
       console.log("Initializing Map...");
-      const map = L.map("map", { zoomControl: false }).setView([20.5937, 78.9629], 5);
+      const map = L.map("map", {
+        zoomControl: true, // Ensure zoom controls are enabled
+        center: [20.5937, 78.9629],
+        zoom: 5,
+        minZoom: 3, // Minimum zoom level
+        maxZoom: 18, // Maximum zoom level (adjust as needed)
+      });
+
+      // Add zoom controls (they will appear in the bottom right corner)
       L.control.zoom({ position: "bottomright" }).addTo(map);
-      
+
+      // Tile layer with appropriate maxZoom
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 12,
-        minZoom: 5,
+        maxZoom: 18, // Maximum zoom level for the tile layer
+        minZoom: 3, // Minimum zoom level for the tile layer
         attribution: "&copy; OpenStreetMap contributors",
       }).addTo(map);
+
       mapRef.current = map;
     }
   }, []);
@@ -111,13 +121,65 @@ const Satellite1 = () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <div id="map" style={{ width: "100%", height: "100vh", filter: "opacity(0.9)" }}></div>
-      <div style={{ position: "absolute", bottom: "80px", left: "50%", transform: "translateX(-50%)", backgroundColor: "black", padding: "10px", borderRadius: "8px", boxShadow: "0px 2px 10px rgba(0,0,0,0.2)", textAlign: "center" }}>
+      <div id="map" style={{ width: "100%", height: "100vh" }}></div>
+      
+      {/* Directions display */}
+      <div 
+        style={{ 
+          position: "absolute", 
+          bottom: "80px", 
+          left: "50%", 
+          transform: "translateX(-50%)", 
+          backgroundColor: "black", 
+          padding: "10px", 
+          borderRadius: "8px", 
+          boxShadow: "0px 2px 10px rgba(0,0,0,0.2)", 
+          textAlign: "center", 
+          color: "white", 
+          zIndex: 2000 
+        }}
+      >
         {currentStep}
       </div>
-      <div style={{ position: "absolute", bottom: "120px", left: "50%", transform: "translateX(-50%)", zIndex: "1000", display: "flex", gap: "10px" }}>
-        <button onClick={trackLocation} style={{ padding: "10px", backgroundColor: "blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Track Location</button>
-        <button onClick={updateFishData} style={{ padding: "10px", backgroundColor: "orange", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Find Fish</button>
+
+      {/* Track Location and Update Fish Data Buttons */}
+      <div 
+        style={{ 
+          position: "absolute", 
+          bottom: "120px", 
+          left: "50%", 
+          transform: "translateX(-50%)", 
+          zIndex: "1000", 
+          display: "flex", 
+          gap: "10px" 
+        }}
+      >
+        <button 
+          onClick={trackLocation} 
+          style={{ 
+            padding: "10px", 
+            backgroundColor: "blue", 
+            color: "white", 
+            border: "none", 
+            borderRadius: "5px", 
+            cursor: "pointer" 
+          }}
+        >
+          Track Location
+        </button>
+        <button 
+          onClick={updateFishData} 
+          style={{ 
+            padding: "10px", 
+            backgroundColor: "orange", 
+            color: "white", 
+            border: "none", 
+            borderRadius: "5px", 
+            cursor: "pointer" 
+          }}
+        >
+          Find Fish
+        </button>
       </div>
     </div>
   );
