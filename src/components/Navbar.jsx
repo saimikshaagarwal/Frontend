@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { navItems } from '../constants';
-import { Menu, X } from 'lucide-react';
 import useAuth from './useAuth';  
 
 function Navbar() {
@@ -28,32 +28,34 @@ function Navbar() {
             <nav className='sticky top-0 z-50 backdrop-blur-lg border-b border-neutral-700/80 w-full' onClick={toggleNavbar}>
                 <div className='container px-4 mx-auto relative lg:text-sm flex justify-between items-center w-full'>
                     <div className='flex items-center flex-shrink-0'>
-                    <h2 className='text-2xl font-bold flex items-center gap-2'>
-  <img src="/logo.jpeg" className="w-12 h-12" alt="Logo" />
-  Fisherman's Compass
-</h2>
+                        <h2 className='text-2xl font-bold flex items-center gap-2 text-[#003366]'>
+                            <img src="/logo.jpeg" className="w-12 h-12" alt="Logo" />
+                            <Link to="/" className="hover:underline text-[#003366]">
+                                Fisherman's Compass
+                            </Link>
+                        </h2>
                     </div>
                     <div className='flex space-x-6 items-center'>
                         <div className='hidden lg:flex ml-14 space-x-12'>
                             {navItems.map((item, index) => (
                                 <li key={index} className='list-none'>
-                                    <a href={item.href}>{item.label}</a>
+                                    <a href={item.href} className='text-[#003366] hover:text-[#00509e]'>{item.label}</a>
                                 </li>
                             ))}
                         </div>
                         <div className='hidden lg:flex justify-center space-x-6 items-center'>
                             {isLoggedIn ? (
                                 <>
-                                    <span className="text-sm text-neutral-500">Welcome, {user.email}</span>
+                                    <span className="text-sm text-[#003366]">Welcome, {user.email}</span>
                                     <button
                                         onClick={handleLogout}
-                                        className='py-2 px-3 border rounded-md'>
+                                        className='py-2 px-3 border rounded-md text-[#003366] hover:bg-[#00509e]'>
                                         Logout
                                     </button>
                                 </>
                             ) : (
                                 <>
-                                    <a href='/login' className='py-2 px-3 border rounded-md'>
+                                    <a href='/login' className='py-2 px-3 border rounded-md text-[#003366] hover:text-[#00509e]'>
                                         Sign In
                                     </a>
                                     <a href='/signup' className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md'>
@@ -75,28 +77,29 @@ function Navbar() {
                         <ul className='w-full space-y-4 text-center'>
                             {navItems.map((item, index) => (
                                 <li key={index} className='list-none'>
-                                    <a href={item.href} className='block py-2 px-4 text-white hover:bg-neutral-700 rounded-md'>{item.label}</a>
+                                    <a href={item.href} className='block py-2 px-4 text-[#003366] hover:bg-neutral-700 rounded-md'>{item.label}</a>
                                 </li>
                             ))}
                         </ul>
                         <div className='mt-6 w-full flex flex-col space-y-4 items-center'>
                             {isLoggedIn ? (
                                 <>
-                                    <span className="text-sm text-neutral-500">Welcome, {user.email}</span>
+                                    <span className="text-sm text-[#003366]">Welcome, {user.email}</span>
                                     <button
                                         onClick={handleLogout}
-                                        className='py-2 px-3 border rounded-md w-full'>
+                                        className='py-2 px-3 border rounded-md w-full text-[#003366] hover:bg-[#00509e]'>
                                         Logout
                                     </button>
                                 </>
                             ) : (
                                 <>
-                                    <a href='/login' className='py-2 px-3 border rounded-md w-full text-white bg-neutral-800 hover:bg-neutral-700 text-center'>
+                                    <a href='/login' className='py-2 px-3 border rounded-md w-full text-[#003366] bg-neutral-800 hover:bg-neutral-700 text-center'>
                                         Sign In
                                     </a>
-                                    <a href='/signup' className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md w-full text-center hover:from-orange-600 hover:to-orange-900'>
-                                        Sign Up
-                                    </a>
+                                    <a href='/signup'
+className='bg-black py-2 px-3 rounded-md w-full text-center text-white hover:bg-gray-800'>
+  Sign Up
+</a>
                                 </>
                             )}
                         </div>

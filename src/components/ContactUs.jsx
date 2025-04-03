@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const ContactUs = () => {
@@ -55,17 +55,18 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: "linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
+    background: "linear-gradient(180deg, #B0E0E6 0%, #00BFFF 100%)",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
+    color: "#ffffff",
   },
   container: {
     width: "80%",
     maxWidth: "900px",
     padding: "40px",
-    background: "rgba(255, 255, 255, 0.8)",
+    background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
     position: "relative",
   },
   topRight: {
@@ -82,7 +83,7 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-    color: "#0073e6",
+    color: "#4AA3E6",
     fontWeight: "bold",
     marginLeft: "5px",
   },
@@ -90,6 +91,7 @@ const styles = {
     background: "none",
     border: "none",
     cursor: "pointer",
+    color: "#ffffff",
   },
 };
 

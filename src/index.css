@@ -3,6 +3,12 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Poppins" sans-serif;
+  font-family: "Poppins", sans-serif;
   color-scheme: dark;
 }
+
+body {
+  background: linear-gradient(180deg, #B0E0E6 0%, #00BFFF 100%);
+  background-size: cover;
+}
+

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { X, Menu } from "lucide-react";
 
 const AboutUs = () => {
@@ -48,7 +48,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: "linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
+    background: "linear-gradient(180deg, #B0E0E6 0%, #00BFFF 100%)",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     position: "relative",
@@ -57,7 +57,7 @@ const styles = {
     width: "80%",
     maxWidth: "900px",
     padding: "40px",
-    background: "rgba(255, 255, 255, 0.8)",
+    background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
   },

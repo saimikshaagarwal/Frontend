@@ -111,14 +111,13 @@ const Satellite1 = () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <div id="map" style={{ width: "100%", height: "80vh", filter: "opacity(0.9)" }}></div>
-      <div style={{ textAlign: "center", marginTop: "10px", fontWeight: "bold", color: "#333", position: "absolute", bottom: "60px", left: "50%", transform: "translateX(-50%)", backgroundColor: "white", padding: "10px", borderRadius: "8px", boxShadow: "0px 2px 10px rgba(0,0,0,0.2)" }}>
+      <div id="map" style={{ width: "100%", height: "100vh", filter: "opacity(0.9)" }}></div>
+      <div style={{ position: "absolute", bottom: "80px", left: "50%", transform: "translateX(-50%)", backgroundColor: "black", padding: "10px", borderRadius: "8px", boxShadow: "0px 2px 10px rgba(0,0,0,0.2)", textAlign: "center" }}>
         {currentStep}
       </div>
-      <div style={{ position: "absolute", bottom: "20px", left: "20px", zIndex: "1000", display: "flex", gap: "10px" }}>
+      <div style={{ position: "absolute", bottom: "120px", left: "50%", transform: "translateX(-50%)", zIndex: "1000", display: "flex", gap: "10px" }}>
         <button onClick={trackLocation} style={{ padding: "10px", backgroundColor: "blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Track Location</button>
         <button onClick={updateFishData} style={{ padding: "10px", backgroundColor: "orange", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Find Fish</button>
-        <button onClick={() => window.location.href = "/"} style={{ padding: "10px", backgroundColor: "green", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Home</button>
       </div>
     </div>
   );
