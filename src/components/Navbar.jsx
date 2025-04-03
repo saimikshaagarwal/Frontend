@@ -28,7 +28,10 @@ function Navbar() {
             <nav className='sticky top-0 z-50 backdrop-blur-lg border-b border-neutral-700/80 w-full' onClick={toggleNavbar}>
                 <div className='container px-4 mx-auto relative lg:text-sm flex justify-between items-center w-full'>
                     <div className='flex items-center flex-shrink-0'>
-                        <h2 className='text-2xl font-bold'>Fisherman's Compass</h2>
+                    <h2 className='text-2xl font-bold flex items-center gap-2'>
+  <img src="/logo.jpeg" className="w-12 h-12" alt="Logo" />
+  Fisherman's Compass
+</h2>
                     </div>
                     <div className='flex space-x-6 items-center'>
                         <div className='hidden lg:flex ml-14 space-x-12'>
