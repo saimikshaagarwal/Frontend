@@ -34,6 +34,13 @@ const Satellite1 = () => {
       }).addTo(map);
 
       mapRef.current = map;
+
+      // Handle window resize event to adjust map size
+      window.addEventListener("resize", () => {
+        if (mapRef.current) {
+          mapRef.current.invalidateSize();
+        }
+      });
     }
   }, []);
 
