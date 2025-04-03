@@ -28,13 +28,26 @@ function App() {
             color: "white",
             background: "rgba(0, 0, 0, 0.3)",
             padding: "20px",
-            borderRadius: "10px"
+            borderRadius: "10px",
+            fontSize: "clamp(1.5rem, 5vw, 3rem)", // Responsive font size
           }}
         >
-          <h1 style={{ fontSize: "5rem", fontWeight: "bold", marginBottom: "20px" }}>
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 8vw, 5rem)", // Ensure font size scales on mobile
+              fontWeight: "bold",
+              marginBottom: "20px",
+            }}
+          >
             Welcome to Fisherman's Compass
           </h1>
-          <p style={{ fontSize: "3.3rem", maxWidth: "80%", fontWeight: "600" }}>
+          <p
+            style={{
+              fontSize: "clamp(1.5rem, 5vw, 3.3rem)", // Scalable text for mobile
+              maxWidth: "80%",
+              fontWeight: "600",
+            }}
+          >
             Navigate smarter and fish sustainably with real-time interactive maps
           </p>
         </div>

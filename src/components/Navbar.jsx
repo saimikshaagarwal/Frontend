@@ -72,40 +72,40 @@ function Navbar() {
                 </div>
             </nav>
             {mobileDrawerOpen && (
-                <div className='fixed top-0 left-1/2 transform -translate-x-1/2 z-[100] bg-black/80 w-full flex justify-center'>
-                    <div className='bg-neutral-900 w-4/5 max-w-md p-6 flex flex-col justify-start items-center shadow-2xl rounded-lg mt-4'>
-                        <ul className='w-full space-y-4 text-center'>
-                            {navItems.map((item, index) => (
-                                <li key={index} className='list-none'>
-                                    <a href={item.href} className='block py-2 px-4 text-[#003366] hover:bg-neutral-700 rounded-md'>{item.label}</a>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className='mt-6 w-full flex flex-col space-y-4 items-center'>
-                            {isLoggedIn ? (
-                                <>
-                                    <span className="text-sm text-[#003366]">Welcome, {user.email}</span>
-                                    <button
-                                        onClick={handleLogout}
-                                        className='py-2 px-3 border rounded-md w-full text-[#003366] hover:bg-[#00509e]'>
-                                        Logout
-                                    </button>
-                                </>
-                            ) : (
-                                <>
-                                    <a href='/login' className='py-2 px-3 border rounded-md w-full text-[#003366] bg-neutral-800 hover:bg-neutral-700 text-center'>
-                                        Sign In
-                                    </a>
-                                    <a href='/signup'
-className='bg-black py-2 px-3 rounded-md w-full text-center text-white hover:bg-gray-800'>
-  Sign Up
-</a>
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
+    <div className='fixed top-0 left-1/2 transform -translate-x-1/2 z-[100] bg-black/90 w-full flex justify-center'>
+        <div className='bg-neutral-900 w-4/5 max-w-md p-6 flex flex-col justify-start items-center shadow-2xl rounded-lg mt-4'>
+            <ul className='w-full space-y-4 text-center'>
+                {navItems.map((item, index) => (
+                    <li key={index} className='list-none'>
+                        <a href={item.href} className='block py-2 px-4 text-white hover:bg-neutral-700 rounded-md'>{item.label}</a>
+                    </li>
+                ))}
+            </ul>
+            <div className='mt-6 w-full flex flex-col space-y-4 items-center'>
+                {isLoggedIn ? (
+                    <>
+                        <span className="text-sm text-white">Welcome, {user.email}</span>
+                        <button
+                            onClick={handleLogout}
+                            className='py-2 px-3 border rounded-md w-full text-white hover:bg-[#00509e]'>
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <a href='/login' className='py-2 px-3 border rounded-md w-full text-white bg-neutral-800 hover:bg-neutral-700 text-center'>
+                            Sign In
+                        </a>
+                        <a href='/signup'
+                            className='bg-black py-2 px-3 rounded-md w-full text-center text-white hover:bg-gray-800'>
+                            Sign Up
+                        </a>
+                    </>
+                )}
+            </div>
+        </div>
+    </div>
+)}
         </div>
     );
 }
