@@ -132,7 +132,7 @@ const Satellite1 = () => {
         id="map"
         style={{
           width: "100%",
-          height: "100vh",
+          height: "100%", // Ensure it takes the full height of the screen
           opacity: 0.9, // Set opacity for transparency
         }}
       ></div>
@@ -141,7 +141,7 @@ const Satellite1 = () => {
       <div 
         style={{
           position: "absolute", 
-          bottom: "200px", // Adjusted to bring it above the buttons
+          bottom: "20%", // Adjusted to give some space at the bottom
           left: "50%", 
           transform: "translateX(-50%)", 
           backgroundColor: "black", 
@@ -160,7 +160,7 @@ const Satellite1 = () => {
       <div 
         style={{
           position: "absolute", 
-          bottom: "120px", 
+          bottom: "10%", // Moved up slightly
           left: "50%", 
           transform: "translateX(-50%)", 
           zIndex: "1000", 

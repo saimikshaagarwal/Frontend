@@ -48,20 +48,26 @@ const styles = {
   container: {
     width: "100%",
     maxWidth: "900px",
-    padding: "40px",
+    padding: "20px",
     background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-    margin: "10px 0", // Margin to prevent overflow
+    margin: "20px 0", // Margin to avoid overflow and give space around content
+    boxSizing: "border-box",
+    overflowX: "hidden", // Ensure content doesn't overflow horizontally
   },
   heading: {
-    fontSize: "2rem", // Reduced font size for mobile
+    fontSize: "2.5rem", // Make heading size responsive for mobile
     marginBottom: "20px",
+    padding: "0 10px", // Added padding to ensure heading fits
+    wordWrap: "break-word", // Ensure long words wrap properly
+    textAlign: "center", // Ensure heading is centered
   },
   paragraph: {
     fontSize: "1.2rem",
     lineHeight: "1.6",
     marginBottom: "15px",
+    wordWrap: "break-word", // Ensure long words wrap in paragraph
   },
   topCenterContainer: {
     position: "absolute",
@@ -70,14 +76,36 @@ const styles = {
     transform: "translateX(-50%)",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: "10px",
+    width: "100%", // Ensure widget does not overflow
+    zIndex: 10, // Ensure it's on top of content
   },
   languageButton: {
-    width: "40px", 
-    height: "40px", 
-    display: "flex", 
-    justifyContent: "center", 
-    alignItems: "center"
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  // Media Queries for mobile responsiveness
+  "@media (max-width: 768px)": {
+    body: {
+      padding: "0 10px",
+    },
+    heading: {
+      fontSize: "1.8rem", // Adjust font size for smaller screens
+      marginBottom: "10px", // Reduce margin to fit on smaller screens
+    },
+    paragraph: {
+      fontSize: "1rem", // Adjust paragraph font size for mobile
+    },
+    container: {
+      padding: "15px", // Adjust padding for smaller devices
+    },
+    topCenterContainer: {
+      top: "5px", // Adjust for mobile screens
+    },
   },
 };
 
