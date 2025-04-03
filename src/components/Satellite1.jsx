@@ -118,7 +118,7 @@ const Satellite1 = () => {
       <div style={{ position: "absolute", bottom: "20px", left: "20px", zIndex: "1000", display: "flex", gap: "10px" }}>
         <button onClick={trackLocation} style={{ padding: "10px", backgroundColor: "blue", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Track Location</button>
         <button onClick={updateFishData} style={{ padding: "10px", backgroundColor: "orange", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Find Fish</button>
-        <button onClick={() => window.location.href = "/"} style={{ padding: "10px", backgroundColor: "green", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Fisrt Page</button>
+        <button onClick={() => window.location.href = "/"} style={{ padding: "10px", backgroundColor: "green", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Home</button>
       </div>
     </div>
   );
