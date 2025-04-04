@@ -61,9 +61,24 @@ const ContactUs = () => {
         {formSubmitted ? (
           <div style={styles.contactInfo}>
             <h2>We’d love to hear from you! Reach out to us through any of the following channels:</h2>
-            <p><strong>Email:</strong> fishermanscompass@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9371054539</p>
-            <p><strong>Instagram:</strong> @fisherman_s_compass</p>
+            <p>
+              <strong>Email:</strong> 
+              <a href="mailto:fishermanscompass@gmail.com" style={styles.contactLink}>
+                fishermanscompass@gmail.com
+              </a>
+            </p>
+            <p>
+              <strong>Phone:</strong> 
+              <a href="tel:+919371054539" style={styles.contactLink}>
+                +91 9371054539
+              </a>
+            </p>
+            <p>
+              <strong>Instagram:</strong> 
+              <a href="https://instagram.com/fisherman_s_compass" style={styles.contactLink}>
+                @fisherman_s_compass
+              </a>
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={styles.form}>
@@ -77,6 +92,7 @@ const ContactUs = () => {
                 onChange={handleInputChange}
                 placeholder="Enter your name"
                 style={styles.formInput}
+                required
               />
             </div>
             <div style={styles.formGroup}>
@@ -89,6 +105,7 @@ const ContactUs = () => {
                 onChange={handleInputChange}
                 placeholder="Enter your email"
                 style={styles.formInput}
+                required
               />
             </div>
             <div style={styles.formGroup}>
@@ -100,6 +117,7 @@ const ContactUs = () => {
                 onChange={handleInputChange}
                 placeholder="Enter your message"
                 style={styles.formInput}
+                required
               ></textarea>
             </div>
             <button type="submit" style={styles.submitButton}>Send Message</button>
@@ -187,6 +205,14 @@ const styles = {
     padding: "20px",
     borderRadius: "10px",
     textAlign: "center",
+  },
+  contactLink: {
+    color: "#fff", // White color for the link
+    textDecoration: "none", // Remove underline
+    fontWeight: "bold",
+  },
+  contactLinkHover: {
+    textDecoration: "underline", // Underline on hover for better user experience
   },
   topCenterContainer: {
     position: "absolute",
