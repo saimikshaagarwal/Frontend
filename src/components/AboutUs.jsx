@@ -15,13 +15,13 @@ const AboutUs = () => {
           Welcome to our advanced satellite-based Fish Detection System. Our mission is to leverage satellite technology to assist in sustainable fishing practices.
         </p>
         <p style={styles.paragraph}>
-          Using cutting-edge satellite imagery and machine learning, we provide real-time data on fish populations, helping fishermen locate abundant areas while ensuring environmental sustainability.
+          Using cutting-edge satellite imagery, we provide real-time data on fish populations, helping fishermen locate abundant areas while ensuring environmental sustainability.
         </p>
         <p style={styles.paragraph}>
           Our system not only helps optimize fishing routes but also minimizes fuel consumption and reduces overfishing. With AI-powered heat maps and navigation tools, our platform offers an innovative approach to marine conservation.
         </p>
         <p style={styles.paragraph}>
-          By integrating GPS tracking, real-time weather updates, and predictive analytics, we empower users with actionable insights for a more efficient and eco-friendly fishing industry.
+          By integrating GPS tracking, and predictive analytics, we empower users with actionable insights for a more efficient and eco-friendly fishing industry.
         </p>
         <p style={styles.paragraph}>
           Join us in revolutionizing the way we interact with our oceans—smart, sustainable, and satellite-driven.
