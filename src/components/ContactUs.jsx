@@ -135,7 +135,6 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    background: "linear-gradient(180deg, #B0E0E6 0%, #00BFFF 100%)",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     position: "relative",
