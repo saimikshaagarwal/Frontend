@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { navItems } from '../constants';
-import useAuth from './useAuth';  
+import useAuth from './useAuth';
 
-function Navbar() {
+function Navbar({ isDark }) {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-    const { isLoggedIn, handleLogout, user } = useAuth();  
+    const { isLoggedIn, handleLogout, user } = useAuth();
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -23,14 +23,18 @@ function Navbar() {
         }
     };
 
+    const textColor = isDark ? 'text-white' : 'text-[#003366]';
+    const hoverText = isDark ? 'hover:text-gray-300' : 'hover:text-[#00509e]';
+    const hoverBg = isDark ? 'hover:bg-gray-700' : 'hover:bg-[#00509e]';
+
     return (
         <div className="relative w-full overflow-x-hidden">
             <nav className='sticky top-0 z-50 backdrop-blur-lg border-b border-neutral-700/80 w-full' onClick={toggleNavbar}>
                 <div className='container px-4 mx-auto relative lg:text-sm flex justify-between items-center w-full'>
                     <div className='flex items-center flex-shrink-0'>
-                        <h2 className='text-2xl font-bold flex items-center gap-2 text-[#003366]'>
+                        <h2 className={`text-2xl font-bold flex items-center gap-2 ${textColor}`}>
                             <img src="/logo.jpeg" className="w-12 h-12" alt="Logo" />
-                            <Link to="/" className="hover:underline text-[#003366]">
+                            <Link to="/" className={`hover:underline ${textColor}`}>
                                 Fisherman's Compass
                             </Link>
                         </h2>
@@ -39,32 +43,32 @@ function Navbar() {
                         <div className='hidden lg:flex ml-14 space-x-12'>
                             {navItems.map((item, index) => (
                                 <li key={index} className='list-none'>
-                                    <a href={item.href} className='text-[#003366] hover:text-[#00509e]'>{item.label}</a>
+                                    <a href={item.href} className={`${textColor} ${hoverText}`}>{item.label}</a>
                                 </li>
                             ))}
                         </div>
                         <div className='hidden lg:flex justify-center space-x-6 items-center'>
                             {isLoggedIn ? (
                                 <>
-                                    <span className="text-sm text-[#003366]">Welcome, {user.email}</span>
+                                    <span className={`text-sm ${textColor}`}>Welcome, {user.email}</span>
                                     <button
                                         onClick={handleLogout}
-                                        className='py-2 px-3 border rounded-md text-[#003366] hover:bg-[#00509e]'>
+                                        className={`py-2 px-3 border rounded-md ${textColor} ${hoverBg}`}>
                                         Logout
                                     </button>
                                 </>
                             ) : (
                                 <>
-                                    <a href='/login' className='py-2 px-3 border rounded-md text-[#003366] hover:text-[#00509e]'>
+                                    <a href='/login' className={`py-2 px-3 border rounded-md ${textColor} ${hoverText}`}>
                                         Sign In
                                     </a>
-                                    <a href='/signup' className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md'>
+                                    <a href='/signup' className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md text-white'>
                                         Sign Up
                                     </a>
                                 </>
                             )}
                         </div>
-                        {/* Language Widget at Right Corner */}
+                        {/* Language Widget */}
                         <div className='hidden lg:flex items-center space-x-2'>
                             <script src="https://static.elfsight.com/platform/platform.js" async></script>
                             <div className="elfsight-app-a55d9b4c-4790-4775-9e0d-66d770209238 w-8 h-8" data-elfsight-app-lazy></div>
