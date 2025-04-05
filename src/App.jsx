@@ -25,7 +25,9 @@ function App() {
       <div className="bubble" style={{ left: '30%', animationDuration: '7s', width: '16px', height: '16px' }}></div>
 
       {/* Simple Navbar without slider */}
-      <Navbar />
+      <div className="w-full overflow-x-hidden m-0 p-0">
+        <Navbar />
+      </div>
       <Chatbotfrontend />
 
       {/* Home page hero and features */}
@@ -77,7 +79,7 @@ function App() {
       </Routes>
 
       {/* Footer on all pages */}
-      <footer className="bg-blue-100 text-center py-6 mt-12 relative z-10">
+      <footer className="bg-blue-100 text-center py-6 mt-12 relative z-10 m-0">
         <p>&copy; 2025 Fisherman's Compass. Built with ❤️</p>
       </footer>
     </>
