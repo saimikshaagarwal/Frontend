@@ -3,11 +3,8 @@ import { useState } from "react";
 const AboutUs = () => {
   return (
     <div style={styles.body}>
-      {/* Center Top Widget */}
-      <div style={styles.topCenterContainer}>
-        <script src="https://static.elfsight.com/platform/platform.js" async></script>
-        <div className="elfsight-app-a55d9b4c-4790-4775-9e0d-66d770209238" data-elfsight-app-lazy style={styles.languageButton}></div>
-      </div>
+      {/* Top Right Language Widget */}
+      
 
       <div style={styles.container}>
         <h1 style={styles.heading}>About Our Fish Detection System</h1>
@@ -41,7 +38,7 @@ const styles = {
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     position: "relative",
-    padding: "0 10px", // Padding added for mobile responsiveness
+    padding: "0 10px",
     boxSizing: "border-box",
   },
   container: {
@@ -51,34 +48,32 @@ const styles = {
     background: "rgba(0, 0, 139, 0.9)",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-    margin: "20px 0", // Margin to avoid overflow and give space around content
+    margin: "20px 0",
     boxSizing: "border-box",
-    overflowX: "hidden", // Ensure content doesn't overflow horizontally
+    overflowX: "hidden",
   },
   heading: {
-    fontSize: "2.5rem", // Make heading size responsive for mobile
+    fontSize: "2.5rem",
     marginBottom: "20px",
-    padding: "0 10px", // Added padding to ensure heading fits
-    wordWrap: "break-word", // Ensure long words wrap properly
-    textAlign: "center", // Ensure heading is centered
+    padding: "0 10px",
+    wordWrap: "break-word",
+    textAlign: "center",
   },
   paragraph: {
     fontSize: "1.2rem",
     lineHeight: "1.6",
     marginBottom: "15px",
-    wordWrap: "break-word", // Ensure long words wrap in paragraph
+    wordWrap: "break-word",
   },
-  topCenterContainer: {
+  topRightContainer: {
     position: "absolute",
     top: "10px",
-    left: "50%",
-    transform: "translateX(-50%)",
+    right: "10px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     gap: "10px",
-    width: "100%", // Ensure widget does not overflow
-    zIndex: 10, // Ensure it's on top of content
+    zIndex: 10,
   },
   languageButton: {
     width: "40px",
@@ -87,23 +82,23 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
   },
-  // Media Queries for mobile responsiveness
   "@media (max-width: 768px)": {
     body: {
       padding: "0 10px",
     },
     heading: {
-      fontSize: "1.8rem", // Adjust font size for smaller screens
-      marginBottom: "10px", // Reduce margin to fit on smaller screens
+      fontSize: "1.8rem",
+      marginBottom: "10px",
     },
     paragraph: {
-      fontSize: "1rem", // Adjust paragraph font size for mobile
+      fontSize: "1rem",
     },
     container: {
-      padding: "15px", // Adjust padding for smaller devices
+      padding: "15px",
     },
-    topCenterContainer: {
-      top: "5px", // Adjust for mobile screens
+    topRightContainer: {
+      top: "5px",
+      right: "5px",
     },
   },
 };

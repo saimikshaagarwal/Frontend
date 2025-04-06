@@ -70,8 +70,11 @@ function Navbar({ isDark }) {
                         </div>
                         {/* Language Widget */}
                         <div className='hidden lg:flex items-center space-x-2'>
-                            <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                            <div className="elfsight-app-a55d9b4c-4790-4775-9e0d-66d770209238 w-8 h-8" data-elfsight-app-lazy></div>
+                        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                        <div
+                    className="elfsight-app-60bd1e08-eafd-4710-8e9b-ad7910f9ef6f"
+                    data-elfsight-app-lazy
+                ></div>
                         </div>
                     </div>
                 </div>
