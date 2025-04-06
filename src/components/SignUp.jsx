@@ -1,3 +1,4 @@
+import WalletConnect from "./WalletComponents";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -24,11 +25,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen ">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="max-w-lg w-full p-8 bg-[rgba(0,0,139,0.9)] text-white rounded-lg shadow-lg">
-        <h2 className="text-3xl text-center font-bold mb-6">
-          Sign Up
-        </h2>
+        <h2 className="text-3xl text-center font-bold mb-6">Sign Up</h2>
         <form onSubmit={handleSignUp}>
           <input
             type="email"
@@ -57,10 +56,14 @@ const SignUp = () => {
           >
             Sign Up
           </button>
+          <div className="mt-6 text-center">
+  <h2 className="text-lg font-semibold mb-2">Connect Wallet</h2>
+  <WalletConnect />
+</div>
         </form>
         <p className="text-center text-sm">
           Already have an account?{" "}
-          <a href="/login" className= "text-white">
+          <a href="/login" className="text-white underline">
             Sign In
           </a>
         </p>
