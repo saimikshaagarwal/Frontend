@@ -13,10 +13,15 @@ Real-time fish tracking with GPS, multilingual support, AI chatbot assistance, a
 - **Border Alert:Before Crossing Indian Border**: Alert users when they are about to cross the Indian maritime border.
 - **Web based & Completely Free**: No app download, saves storage.No hidden costs, unlike Fishbrain (Pro) & FishAngler (VIP).
 
-## Technology Stack
+## Technology Stack and Technologies
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Libraries**: 
-  - Flask for web framework
-  - MySQL Connector for database connection
-  - Vanilla JavaScript for frontend interactions
+-  **CSS, JavaScript**
+-  **React** 
+-  **IDX (Integrated Developer Experience)**: For seamless development and deployment.
+-  **Gemini Chatbot** – An AI-powered chatbot for user interaction and support.
+-  **APIs**
+-  **Translator API**
+-  **Dark Mode** – UI feature to enhance user experience in low-light conditions
+-  **GPS Integration** – For real-time location tracking and navigation.
+-  **Web3 Wallet Connection**-To obtain the user’s accurate wallet address and for client side personalization.
+
